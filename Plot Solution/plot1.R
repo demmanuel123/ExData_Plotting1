@@ -1,7 +1,12 @@
+#Plot 1 to help us analyse  how household energy usage
+#varies over a 2-day period in February, 2007. 
+
+
 library(rJava)
 library(data.table)
 # Pre requisitive : Set working directory where you will find the input data in text format
 # using setwd("<directory name>")
+
 household_power <- fread("household_power_consumption.txt"
                          , sep=";"
                          , header=TRUE
