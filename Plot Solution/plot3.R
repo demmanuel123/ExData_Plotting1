@@ -15,13 +15,25 @@ powernew <-subset(household_power
 dateTime  <- as.POSIXlt(paste(as.Date(powernew$Date,format="%d/%m/%Y"), powernew$Time, sep=" "))
 
 # Initialize to PNG file 
-png("plot2.png",width=6,height=6,units="in",res=1200)
+png("plot3.png",width=6,height=6,units="in",res=1200)
 # Plot as a line  with X axis as Date Time and Y as Global active power
 
+with(powernew, {
 plot( dateTime
-     ,as.numeric(powernew$Global_active_power)
-     ,ylab="Global active power(kilowatts)"
-     ,xlab=""
-     ,type="l"
-     )
+      ,as.numeric(powernew$Sub_metering_1)
+      ,ylab="Energy Sub metering"
+      ,xlab=""
+      ,type="l"
+      ,col="black"
+)
+lines( dateTime
+      ,as.numeric(powernew$Sub_metering_2)
+      ,col="red"
+)
+lines( dateTime
+      ,as.numeric(powernew$Sub_metering_3)
+      ,col="blue"
+)
+}
+)
 dev.off() #device off
