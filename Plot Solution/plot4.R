@@ -3,8 +3,9 @@ library(data.table)
 # Pre requisitive : Set working directory where you will find the input data in text format
 # using setwd("<directory name>")
 vars <- c("character", "character", rep("numeric", 7))
-household_power <- fread("household_power_consumption.txt", sep=";",
-                         header=TRUE
+household_power <- fread("household_power_consumption.txt"
+                         , sep=";"
+                         ,header=TRUE
                          ,colClasses="vars"
                          ,na.strings="?")
 #Subset and extract only 1/2 and 2/2 dates specific data 
@@ -29,33 +30,33 @@ par(mfrow=c(2,2))
         ,type="l"
   )
   #Voltage Vs Datetime  
-plot( dateTime
+  plot( dateTime
       ,as.numeric(powernew$Voltage)
       ,ylab="Voltage"
       ,xlab="datetime"
       ,type="l"
-)
+  )
 
 
-#Energy sub metering 
-with(powernew, {
-  plot( dateTime
+  #Energy sub metering 
+  with(powernew, {
+    plot( dateTime
         ,as.numeric(powernew$Sub_metering_1)
         ,ylab="Energy Sub metering"
         ,xlab=""
         ,type="l"
         ,col="black"
-  )
-  lines( dateTime
+    )
+    lines( dateTime
          ,as.numeric(powernew$Sub_metering_2)
          ,col="red"
-  )
-  lines( dateTime
+    )
+    lines( dateTime
          ,as.numeric(powernew$Sub_metering_3)
          ,col="blue"
+    )
+  }
   )
-}
-)
 
 #Global reactive power
 #Voltage Vs Datetime  
@@ -67,3 +68,5 @@ plot( dateTime
 )
 
 dev.off() #device off
+
+#2x2 Matrix for different parameters to gauge energy consumption

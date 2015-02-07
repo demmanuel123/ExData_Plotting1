@@ -3,8 +3,9 @@ library(data.table)
 # Pre requisitive : Set working directory where you will find the input data in text format
 # using setwd("<directory name>")
 vars <- c("character", "character", rep("numeric", 7))
-household_power <- fread("household_power_consumption.txt", sep=";",
-                         header=TRUE
+household_power <- fread("household_power_consumption.txt"
+                         , sep=";"
+                         ,header=TRUE
                          ,colClasses="vars"
                          ,na.strings="?")
 #Subset and extract only 1/2 and 2/2 dates specific data 
@@ -37,3 +38,5 @@ lines( dateTime
 }
 )
 dev.off() #device off
+
+##Plot with multiple lines for submetering 
